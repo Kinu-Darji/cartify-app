@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { createBrowserRouter,RouterProvider } from 'react-router-dom';
+import Header from './Components/Header';
+import Sidebar from './Sidebar';
+import Dashboard from './Components/Pages/Dashboard';
+
 
 function App() {
+  const router =createBrowserRouter([
+    {
+      path:"/",
+      element:<>
+      <section>
+        <Header/>
+        <div className='contentMain flex'>
+          <div className='sidebarWrapper w-[18%]'>
+            <Sidebar/>
+          </div>
+          <div className='contentRight py-3 px-5 w-[82%]'>
+            <Dashboard/>
+          </div>
+        </div>
+      </section>
+      </>
+    }
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <RouterProvider router={router}/>
+    </>
   );
 }
 
